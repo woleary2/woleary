@@ -9,7 +9,34 @@ Currently, two official plugins are available:
 
 ## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Personal Portfolio (Vite + React + TypeScript + Tailwind)
+
+This repository is a personal portfolio starter for showcasing projects, notes, and experiments. It uses Vite with React, TypeScript, and Tailwind CSS.
+
+Getting started
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the dev server:
+
+```bash
+npm run dev
+```
+
+3. Type-check the project:
+
+```bash
+npm run type-check
+```
+
+Notes
+
+- Tailwind is configured via `tailwind.config.cjs` and PostCSS.
+- Edit the components under `src/components` and add project entries in `src/data/projects.ts`.
 
 ## Expanding the ESLint configuration
 
