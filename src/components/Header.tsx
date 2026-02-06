@@ -8,7 +8,7 @@ export default function Header() {
         <div className="rounded-full bg-indigo-600 logo-small flex items-center justify-center text-white font-bold">W</div>
         <div>
           <h1 className="text-2xl font-bold">Will O'Leary</h1>
-          <p className="muted">Software</p>
+          <p className="muted">Software developer</p>
         </div>
       </div>
 
