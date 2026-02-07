@@ -8,7 +8,7 @@ import Contact from '../components/Contact'
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className="min-h-screen max-w-4xl mx-auto px-6 py-8 sm:px-8">
         <Header />
 
         <main className="space-y-12">
