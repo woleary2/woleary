@@ -2,12 +2,16 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div id="about" className="max-w-2xl">
-      <p className="text-neutral-400 leading-relaxed text-lg">
-        I'm Will, a second year student at Tufts University studying Computer Science
-        and Mathematics. I enjoy building software projects using web development technologies
-        such as React and TypeScript. I also enjoy developing in C++.
+    <section id="about" className="space-y-4 max-w-2xl">
+      <div className="space-y-1">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-50">About</h2>
+        <p className="text-sm text-neutral-500">A bit of context on who I am.</p>
+      </div>
+
+      <p className="text-neutral-300 leading-relaxed text-base">
+        I&apos;m Will, a second year student at Tufts University studying Computer Science and
+        Mathematics.
       </p>
-    </div>
+    </section>
   )
 }
