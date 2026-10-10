@@ -3,41 +3,51 @@ import { projects } from '../data/projects'
 
 export default function Projects() {
   return (
-    <section id="projects" className="space-y-6">
-      <header className="space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-50">Projects</h2>
-        <p className="text-sm text-neutral-500">
-          A few things I&apos;ve been working on recently.
+    <section id="projects" className="space-y-8">
+      <header className="max-w-2xl space-y-3">
+        <p className="font-mono-tag text-xs uppercase tracking-[0.2em] text-pine">Selected work</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Projects</h2>
+        <p className="text-base leading-relaxed text-mute">
+          A few things I&apos;ve been working on recently — systems tools, simulations, and this site.
         </p>
       </header>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
+      <div className="grid gap-5 sm:grid-cols-2">
+        {projects.map((p, index) => (
           <article
             key={p.id}
-            className="flex flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 shadow-sm hover:border-indigo-500/40 hover:bg-neutral-900 transition-colors duration-150"
+            className={[
+              'group flex flex-col rounded-2xl border border-line bg-surface p-5 shadow-sm shadow-ink/5 transition duration-200 hover:-translate-y-0.5 hover:border-pine/40 hover:shadow-md hover:shadow-pine/10 sm:p-6',
+              index === 0 ? 'sm:col-span-2' : '',
+            ].join(' ')}
           >
-            <h3 className="text-base font-semibold text-neutral-50">{p.title}</h3>
-            <p className="mt-2 text-sm text-neutral-400 leading-relaxed flex-1">{p.description}</p>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="text-lg font-semibold tracking-tight text-ink">{p.title}</h3>
+              <span className="font-mono-tag text-[11px] text-mute">0{index + 1}</span>
+            </div>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-mute">{p.description}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
               {p.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-[11px] px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300"
+                  className="font-mono-tag rounded-full bg-pine-soft px-2.5 py-1 text-[11px] text-pine-hover"
                 >
                   {t}
                 </span>
               ))}
             </div>
             {p.link && (
-              <div className="mt-3 pt-3 border-t border-neutral-800">
+              <div className="mt-5 border-t border-line pt-4">
                 <a
-                  className="text-sm font-medium text-indigo-400 hover:text-indigo-300"
-                  href={p.link}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-pine transition-colors hover:text-pine-hover"
+                  href={p.link.startsWith('http') ? p.link : `https://${p.link}`}
                   target="_blank"
                   rel="noreferrer"
                 >
                   View project
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </a>
               </div>
             )}

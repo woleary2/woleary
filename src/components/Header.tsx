@@ -4,29 +4,35 @@ import { Link, useLocation } from 'react-router-dom'
 export default function Header() {
   const location = useLocation()
 
+  const isActive = (path: string) => {
+    if (path === '/projects') {
+      return location.pathname === '/' || location.pathname === '/projects'
+    }
+    return location.pathname === path
+  }
+
   const navLinkClass = (path: string) => {
-    const isActive = location.pathname === path
     return [
-      'px-3 py-2 text-sm font-medium border-b-2 transition-colors duration-150',
-      isActive
-        ? 'border-indigo-400 text-neutral-50'
-        : 'border-transparent text-neutral-400 hover:text-neutral-100 hover:border-neutral-600',
+      'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-150',
+      isActive(path)
+        ? 'bg-pine text-paper shadow-sm'
+        : 'text-mute hover:bg-pine-soft hover:text-ink',
     ].join(' ')
   }
 
   return (
-    <header className="flex items-center justify-between gap-6 border-b border-neutral-800 pb-4 mb-8">
-      <div className="flex items-center gap-4">
-        <div className="h-9 w-9 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
+    <header className="sticky top-4 z-20 mb-2 flex flex-col gap-3 rounded-2xl border border-line bg-surface/80 px-3 py-3 shadow-sm shadow-ink/5 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:px-5">
+      <Link to="/" className="flex items-center gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pine text-base font-semibold text-paper shadow-md shadow-pine/25">
           W
         </div>
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-neutral-50">Will O'Leary</h1>
-          <p className="text-xs text-neutral-500">Software developer</p>
+          <h1 className="text-lg font-semibold tracking-tight text-ink">Will O&apos;Leary</h1>
+          <p className="text-xs text-mute">Software developer</p>
         </div>
-      </div>
+      </Link>
 
-      <nav className="flex items-center gap-2">
+      <nav className="flex items-center gap-0.5 sm:gap-1">
         <Link className={navLinkClass('/projects')} to="/projects">
           Projects
         </Link>
