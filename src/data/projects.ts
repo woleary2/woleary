@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     id: 'p2',
     title: 'Network Activity Tracker',
-    description: 'C++ real time network monitoring CLI that tracks upload/download throughput, interface statistics, active connections, and network activity  Developed heuristic based threat detection for unusual network behavior, including configurable upload/download spike thresholds, and suspicious listening or remote port tracking.',
+    description: 'C++ real time network monitoring CLI that tracks upload/download throughput, interface statistics, active connections, and network activity.',
     tags: ['C++', 'Networking', 'TCP/UDP'],
     link: 'https://github.com/woleary2/network_activity',
   },
