@@ -8,7 +8,7 @@ export default function Projects() {
         <p className="font-mono-tag text-xs uppercase tracking-[0.2em] text-pine">Selected work</p>
         <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Projects</h2>
         <p className="text-base leading-relaxed text-mute">
-          A few things I&apos;ve been working on recently — systems tools, simulations, and this site.
+          What I&apos;ve been working on recently.
         </p>
       </header>
 

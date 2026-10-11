@@ -17,7 +17,7 @@ export default function About() {
       <ul className="grid gap-3 sm:grid-cols-3">
         {[
           { label: 'School', value: 'Tufts University' },
-          { label: 'Focus', value: 'CS + Mathematics' },
+          { label: 'Majors', value: 'CS + Mathematics' },
           { label: 'Interests', value: 'Systems programming, Data Analytics, Math Modelling' },
         ].map((item) => (
           <li
