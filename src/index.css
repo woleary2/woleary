@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --paper: 243 238 230;
+  --ink: 26 24 20;
+  --mute: 106 99 90;
+  --line: 221 212 198;
+  --surface: 255 253 248;
+  --pine: 14 107 92;
+  --pine-hover: 10 87 75;
+  --pine-soft: 220 238 233;
+  --pine-mist: 183 216 208;
+  --ember: 196 122 58;
+  --grid: 26 24 20;
+  --grid-alpha: 0.035;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --paper: 17 16 14;
+  --ink: 238 232 222;
+  --mute: 160 152 140;
+  --line: 48 44 39;
+  --surface: 27 25 22;
+  --pine: 74 186 161;
+  --pine-hover: 110 210 188;
+  --pine-soft: 24 52 46;
+  --pine-mist: 40 90 80;
+  --ember: 222 150 88;
+  --grid: 238 232 222;
+  --grid-alpha: 0.03;
+  color-scheme: dark;
+}
+
 html,
 body,
 #root {
@@ -15,27 +47,83 @@ html {
 body {
   @apply text-ink antialiased;
   font-family: Outfit, system-ui, ui-sans-serif, sans-serif;
-  background-color: #f3eee6;
+  background-color: rgb(var(--paper));
   background-image:
-    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(14, 107, 92, 0.12), transparent 55%),
-    radial-gradient(ellipse 40% 30% at 100% 0%, rgba(196, 122, 58, 0.1), transparent 50%),
-    linear-gradient(rgba(26, 24, 20, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 24, 20, 0.035) 1px, transparent 1px);
+    radial-gradient(ellipse 70% 45% at 50% -10%, rgb(var(--pine) / 0.14), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 100% 0%, rgb(var(--ember) / 0.12), transparent 50%),
+    linear-gradient(rgb(var(--grid) / var(--grid-alpha)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid) / var(--grid-alpha)) 1px, transparent 1px);
   background-size: auto, auto, 48px 48px, 48px 48px;
   background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* subtle film grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: rgba(14, 107, 92, 0.22);
-  color: #1a1814;
+  background: rgb(var(--pine) / 0.25);
+  color: rgb(var(--ink));
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #0e6b5c;
+  outline: 2px solid rgb(var(--pine));
   outline-offset: 3px;
 }
 
 .font-mono-tag {
   font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* gradient accent text */
+.text-gradient {
+  background: linear-gradient(100deg, rgb(var(--pine)) 10%, rgb(var(--ember)) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* cursor-following spotlight for cards */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(var(--pine) / 0.12),
+    transparent 45%
+  );
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
